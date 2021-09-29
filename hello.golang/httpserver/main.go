@@ -24,7 +24,7 @@ func init() {
 */
 func main()  {
 	http.HandleFunc("/", logPanics(simpleHandle))
-	http.HandleFunc("/healthz", healthz)
+	http.HandleFunc("/healthz", logPanics(healthz))
 
 	if err := http.ListenAndServe(":8080",nil);err != nil {
 		panic(err)
@@ -64,11 +64,16 @@ func reqHeaderToRespHeader(w http.ResponseWriter,req *http.Request)  {
 			}
 		}
 	}
+	for s, strings := range w.Header() {
+		fmt.Printf("response header key: %s ,value: %s",s,strings)
+	}
+
 }
 
 func getSvsVersion(w http.ResponseWriter,req *http.Request)  {
 	version := os.Getenv("VERSION")
 	w.Header().Set("VERSION",version)
+	io.WriteString(w,"VERSION:" + w.Header().Get("VERSION"))
 }
 
 func myLog(w http.ResponseWriter,req *http.Request)  {
