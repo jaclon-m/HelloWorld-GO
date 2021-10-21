@@ -1,3 +1,3 @@
-hub=${HUB-jaclon}
-image=${IMAGE-httpserver:0.0.1}
+hub=${jaclond}
+image=${httpserver-lgs:0.0.2}
 docker build . -t "${hub}/${image}"
