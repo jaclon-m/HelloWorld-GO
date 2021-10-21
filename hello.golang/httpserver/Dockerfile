@@ -26,6 +26,6 @@ COPY --from=builder /app/publish .
 # 为了防止代码中请求https链接报错，我们需要将证书纳入到scratch中
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/cert
 
-EXPOSE 8080
+EXPOSE 8081
 
 ENTRYPOINT ["./httpserver","-address=:8081"]

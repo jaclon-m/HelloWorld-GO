@@ -10,6 +10,13 @@
 1. 通过makefile 构建
 2. Dockerfile中指定编译环境
 3. 运行阶段指定scratch作为基础镜像
+```cgo
+make push
+make run
+
+docker inspect e8fd89bee38b # 查看pid
+nsenter -t 16711 -n ip a #查看网络信息
+```
 
 # v0.0.1
 Dockerfile

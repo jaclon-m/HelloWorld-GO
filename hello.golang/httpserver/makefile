@@ -6,7 +6,7 @@ build: All
 push: build
 	docker push "${HUB}/${IMAGE}"
 run: All
-	docker run -d -p 8081:8081 ${HUB}/${IMAGE}
+	docker run -p 8081:8081 ${HUB}/${IMAGE}
 
 
 # = 是最基本的赋值
