@@ -58,9 +58,9 @@ TODO: 详细学习 https://www.ruanyifeng.com/blog/2015/02/make.html
 # 执行
 
 
-编译并推送镜像
+编译并推送镜像 注意要登录过docker hub(~/.docker/config.json)
 ```cgo
-make build
+make push
 ```
 
 启动
@@ -97,3 +97,5 @@ exit
 ```cgo
 ifconfig
 ```
+
+TODO:没有访问到http://localhost:8080 

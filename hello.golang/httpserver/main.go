@@ -11,7 +11,7 @@ import (
 type HandleFnc func(w http.ResponseWriter, r *http.Request)
 
 func init() {
-	os.Setenv("VERSION","1.0.0")
+	os.Setenv("VERSION", "1.0.0")
 }
 
 /**
@@ -22,11 +22,11 @@ func init() {
 3. Server 端记录访问日志包括客户端 IP，HTTP 返回码，输出到 server 端的标准输出
 4. 当访问 localhost/healthz 时，应返回200
 */
-func main()  {
+func main() {
 	http.HandleFunc("/", logPanics(simpleHandle))
 	http.HandleFunc("/healthz", logPanics(healthz))
 
-	if err := http.ListenAndServe(":8080",nil);err != nil {
+	if err := http.ListenAndServe(":8081", nil); err != nil {
 		panic(err)
 	}
 }
@@ -34,53 +34,53 @@ func main()  {
 func logPanics(function HandleFnc) HandleFnc {
 	return func(writer http.ResponseWriter, request *http.Request) {
 		defer func() {
-			if x := recover();x!= nil{
-				log.Printf("[%v] caught panic : %v",request.RemoteAddr,x)
-				http.Error(writer,http.StatusText(http.StatusInternalServerError),
+			if x := recover(); x != nil {
+				log.Printf("[%v] caught panic : %v", request.RemoteAddr, x)
+				http.Error(writer, http.StatusText(http.StatusInternalServerError),
 					http.StatusInternalServerError)
 			}
 		}()
-		function(writer,request)
+		function(writer, request)
 	}
 }
 
-func simpleHandle(w http.ResponseWriter,req *http.Request)  {
-	reqHeaderToRespHeader(w,req)
-	getSvsVersion(w,req)
-	myLog(w,req)
+func simpleHandle(w http.ResponseWriter, req *http.Request) {
+	reqHeaderToRespHeader(w, req)
+	getSvsVersion(w, req)
+	myLog(w, req)
 }
 
-func reqHeaderToRespHeader(w http.ResponseWriter,req *http.Request)  {
-	if h := req.Header;h != nil {
+func reqHeaderToRespHeader(w http.ResponseWriter, req *http.Request) {
+	if h := req.Header; h != nil {
 		for s, strings := range h {
-			if w.Header().Get(s) != ""{
+			if w.Header().Get(s) != "" {
 				wsString := w.Header().Values(s)
-				temp := make([]string,len(strings) + len(wsString))
-				at := copy(temp,wsString)
-				copy(temp[at:],strings)
+				temp := make([]string, len(strings)+len(wsString))
+				at := copy(temp, wsString)
+				copy(temp[at:], strings)
 				w.Header()[s] = temp
-			}else {
+			} else {
 				w.Header()[s] = strings
 			}
 		}
 	}
 	for s, strings := range w.Header() {
-		fmt.Printf("response header key: %s ,value: %s",s,strings)
+		fmt.Printf("response header key: %s ,value: %s", s, strings)
 	}
 
 }
 
-func getSvsVersion(w http.ResponseWriter,req *http.Request)  {
+func getSvsVersion(w http.ResponseWriter, req *http.Request) {
 	version := os.Getenv("VERSION")
-	w.Header().Set("VERSION",version)
-	io.WriteString(w,"VERSION:" + w.Header().Get("VERSION"))
+	w.Header().Set("VERSION", version)
+	io.WriteString(w, "VERSION:"+w.Header().Get("VERSION"))
 }
 
-func myLog(w http.ResponseWriter,req *http.Request)  {
+func myLog(w http.ResponseWriter, req *http.Request) {
 	ip := req.RemoteAddr
 	fmt.Printf("remmoteAddr: %s\n", ip)
 }
 
-func healthz(w http.ResponseWriter,r *http.Request)  {
-	io.WriteString(w,"200")
+func healthz(w http.ResponseWriter, r *http.Request) {
+	io.WriteString(w, "200")
 }

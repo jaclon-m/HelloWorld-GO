@@ -1,14 +1,12 @@
 All:
-#HUB ?=jaclond
-#IMAGE ?=httpserver:0.0.1
 HUB ?=jaclond
-IMAGE ?=httpserver-lgs:0.0.2
+IMAGE ?=httpserver-lgs:1.0.1
 build: All
 	./build.sh
 push: build
 	docker push "${HUB}/${IMAGE}"
 run: All
-	docker run -d -p 8080:8080 ${HUB}/${IMAGE}
+	docker run -d -p 8081:8081 ${HUB}/${IMAGE}
 
 
 # = 是最基本的赋值

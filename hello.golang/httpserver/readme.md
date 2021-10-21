@@ -6,13 +6,18 @@
 - 通过 nsenter 进入容器查看 IP 配置
 
 ---
+# v0.0.2
+1. 通过makefile 构建
+2. Dockerfile中指定编译环境
+3. 运行阶段指定scratch作为基础镜像
 
+# v0.0.1
 Dockerfile
 ```cgo
 step0: edit Dockerfile
 step1: CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/amd64 
 step2: trans httpsever file to server
-step3: docker build . (docker build -t httpsever-lgs/ubuntu:v1.0 .)
+step3: docker build . (docker build . -t httpsever-lgs/ubuntu:v1.0 .)
 ```
 
 推送到docker 官方
