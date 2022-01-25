@@ -18,3 +18,6 @@ Ingress
 
 生成证书:ingress.md
 kubectl apply -f secret.yaml kubectl apply -f nginx-ingress-deployment.yaml kubectl apply -f ingress.yaml
+
+
+参考：https://gitee.com/cxbiao/go-study/tree/master/module8
