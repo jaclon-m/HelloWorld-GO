@@ -1,4 +1,4 @@
-module httpserver
+module mycncamp/HelloWorld-GO
 
 go 1.16
 

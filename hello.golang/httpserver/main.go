@@ -1,7 +1,9 @@
 package main
 
 import (
+	"flag"
 	"fmt"
+	"github.com/golang/glog"
 	"io"
 	"log"
 	"net/http"
@@ -23,9 +25,10 @@ func init() {
 4. 当访问 localhost/healthz 时，应返回200
 */
 func main() {
+	flag.Set("v", "4")
 	http.HandleFunc("/", logPanics(simpleHandle))
 	http.HandleFunc("/healthz", logPanics(healthz))
-
+	glog.V(2).Info("start server...")
 	if err := http.ListenAndServe(":8081", nil); err != nil {
 		panic(err)
 	}

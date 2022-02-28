@@ -22,12 +22,17 @@ github: https://github.com/Unknwon/the-way-to-go_ZH_CN
   多项目工程中使用GOPATH： http://c.biancheng.net/view/88.html
   - 本地实践：
     GOPATH配置在/etc/zprofile
-    项目源码最终放在了userhome/go/src下，IDEA可以配置GLOABLE PATH和PROJECT PATH
+    项目源码最终放在了development/go/src下,不同项目在不同的包中。
+    IDEA可以配置GLOBAL PATH和PROJECT PATH ![img.png](images/img3.png)
 - 基本命令
   - build
   - install
   - test
   - vet
+
+**追加**
+单独使用go path 会导致版本问题.
+现在一般通过go mod管理依赖，注意需要删除IDEA go path配置，会和go mod冲突
 
 # 基本语法和数据结构
 
