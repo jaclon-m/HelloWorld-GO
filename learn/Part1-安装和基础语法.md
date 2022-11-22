@@ -15,7 +15,7 @@ github: https://github.com/Unknwon/the-way-to-go_ZH_CN
       - src:存放源代码
       - pkg:存放依赖包
       - bin:存放可执行文件
-  - 其他常用变量 GOOS，GOARCH，GOPROXY
+  - 其他常用变量 GOOS，GOARCH，GOPROXY(CGO_ENABLED=0 GOOS=linux GOARCH=amd64)
   - 建议
   国内用户建议设置goproxy:export GOPROXY=https://goproxy.cn
   参考https://learnku.com/docs/the-way-to-go/go-environment-variable/3565
