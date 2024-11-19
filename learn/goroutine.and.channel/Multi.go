@@ -9,7 +9,7 @@ import (
 /**
 练习二：改为多个生生产者和消费者
 */
-func main() {
+func test2() {
 	ch1 := make(chan int, 10)
 	ch2 := make(chan int, 20)
 	go pro1(ch1)

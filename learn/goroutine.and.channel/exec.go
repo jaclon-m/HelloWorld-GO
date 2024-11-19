@@ -5,7 +5,7 @@ import (
 	"math/rand"
 )
 
-func main() {
+func test() {
 	fmt.Println("start")
 	queue := make(chan int, 10)
 	go producer(queue)

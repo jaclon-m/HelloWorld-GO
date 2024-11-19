@@ -70,6 +70,7 @@ defer延迟函数在panic发生时仍会被执行，这使得recover只能在def
 
 - 协程
 ```cgo
+go functionName()
 for i := 0; i < 10; i++ {
 go fmt.Println(i) }
 time.Sleep(time.Second)
@@ -203,3 +204,23 @@ func main() {
 	// time.Sleep(time.Second * 5)
 }
 ```
+
+## context
+
+https://blog.csdn.net/qq_38428433/article/details/140649778
+
+取消信号传递：可以用来传递取消信号，让一个正在执行的函数知道它应该提前终止。
+超时控制：可以设定一个超时时间，自动取消超过执行时间的操作。
+截止时间：与超时类似，但是是设定一个绝对时间点，而不是时间段。
+值传递：可以安全地在请求的上下文中传递数据，避免了使用全局变量或者参数列表不断增长。
+
+用法
+context.Background
+• Background 通常被用于主函数、初始化以及测试中，作为一个顶层的 context，也就是说一般 我们创建的 context 都是基于 Background
+context.TODO
+• TODO 是在不确定使用什么 context 的时候才会使用
+context.WithDeadline • 超时时间
+context.WithValue
+• 向 context 添加键值对
+context.WithCancel
+• 创建一个可取消的 context
