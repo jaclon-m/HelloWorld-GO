@@ -19,7 +19,7 @@ github: https://github.com/Unknwon/the-way-to-go_ZH_CN
   - 建议
   国内用户建议设置goproxy:export GOPROXY=https://goproxy.cn
   参考https://learnku.com/docs/the-way-to-go/go-environment-variable/3565
-  多项目工程中使用GOPATH： http://c.biancheng.net/view/88.html
+  多项目工程中使用GOPATH： http://c.biancheng.net/view/88.html  https://www.cnblogs.com/ailiailan/p/13454139.html
   - 本地实践：
     GOPATH配置在/etc/zprofile
     项目源码最终放在了development/go/src下,不同项目在不同的包中。
@@ -27,8 +27,8 @@ github: https://github.com/Unknwon/the-way-to-go_ZH_CN
 - 基本命令
   - build
   - install
-  - test
-  - vet
+  - test: test和代码文件在一个目录下，自动测试
+  - vet：语法和错误检查
 
 **追加**
 单独使用go path 会导致版本问题.
@@ -40,6 +40,11 @@ github: https://github.com/Unknwon/the-way-to-go_ZH_CN
   - 切片是对数组一个连续片段的引用，数组定义中不指定长度即为切片
   - 切片在未初始化之前默认为nil，长度为0
   - 切片的remove比较复杂
+  ```cgo
+  func deleteItem(slice []int, index int) []int {
+	return append(slice[:index], slice[index+1:]...)
+  }
+  ```
   - 切片赋值：make和new 
     - New返回指针地址
     - Make返回第一个元素，可预设内存空间，避免未来的内存拷贝

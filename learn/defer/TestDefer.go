@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func testDefer() {
 	fmt.Println("hello ...")
 	defer func() {
 		fmt.Println("into defer...")

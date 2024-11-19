@@ -2,7 +2,8 @@ package main
 
 import "fmt"
 
-type IF interface { getName() string
+type IF interface {
+	getName() string
 }
 type Human struct {
 	firstName, lastName string
@@ -21,12 +22,17 @@ func main() {
 	for _, f := range interfaces {
 		fmt.Println(f.getName())
 	}
+	testAAA()
 }
 
-func (h *Human) getName() string { return h.firstName + "," + h.lastName
+func (h *Human) getName() string {
+	return h.firstName + "," + h.lastName
 }
+
 type Car struct {
 	factory, model string
 }
-func (c *Car) getName() string { return c.factory + "-" + c.model
+
+func (c *Car) getName() string {
+	return c.factory + "-" + c.model
 }

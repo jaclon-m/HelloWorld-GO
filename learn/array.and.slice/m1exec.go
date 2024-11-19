@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func test() {
 	var arr1 = []string{"I", "am", "stupid", "and", "weak"}
 	var arr2 = []string{"I", "am", "smart", "and", "strong"}
 

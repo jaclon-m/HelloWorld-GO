@@ -27,7 +27,6 @@ func struct2Unmarshal(h Human) string{
 # 错误处理
 
 error本身是一个接口
-TODO：不同语言的error处理方式
 
 # defer panic recover
 
@@ -55,6 +54,17 @@ defer func() {
     }()
     panic("a panic is triggered")
 ```
+
+defer、panic和recover的关系
+defer延迟函数在panic发生时仍会被执行，这使得recover只能在defer函数中有效。
+
+## 错误处理的最佳实践
+
+- 优先使用错误返回值：Go语言提倡使用错误作为函数的返回值，而非异常机制。
+- 避免滥用panic：panic只应用于不可恢复的错误，如程序的内部逻辑错误。
+- 提供有用的错误信息：错误信息应尽可能清晰，包含足够的上下文。
+- 使用错误包装：利用错误包装机制，保留原始错误信息，构建错误链。
+- 检查错误类型：使用errors.Is和errors.As来判断和提取特定的错误信息。
 
 # 多线程
 
